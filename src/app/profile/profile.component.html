@@ -1,0 +1,124 @@
+<navbar></navbar>
+<div class="grid-container">
+    <h1 class="mat-h1">Profile</h1>
+    <mat-grid-list cols="2" rowHeight="350px">
+      <mat-grid-tile  [colspan]=2 [rowspan]=3>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar-{{user.firstname}}" class="avatar"> 
+            <mat-card-title class="dashboard-card-title">
+              {{user.firstname}} {{user.secondname}}
+            </mat-card-title>
+            <mat-card-subtitle class="dashboard-card-subtitle">
+              {{user.age}} years old
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <mat-card-content class="dashboard-card-content">
+              <mat-tab-group>
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    About
+                  </ng-template>
+                  <mat-accordion>
+
+                    <!--Personal Panel-->
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Personal
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          Your Personal Information
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+
+                      <div class="section">
+                          <h3 class="mat-h3">FULL NAME</h3>
+                          <p>{{user.firstname}} {{user.secondname}}</p>
+                      </div>
+
+                      <div class="section">
+                          <h3 class="mat-h3">NATIONALITY</h3>
+                          <p>{{user.nationality === 'es' ? 'Spain' : 'Other'}}</p>
+                      </div>
+
+                    </mat-expansion-panel>
+
+                    <!--Work Panel-->
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                          (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Work
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        Work Information
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="section">
+                      <h3 class="mat-h3">OCCUPATION</h3>
+                      <p>{{user.work.occupation}}</p>
+                    </div>
+
+                    <div class="section">
+                      <h3 class="mat-h3">JOBS</h3>
+                      <div *ngFor='let job of user.work.jobs'>
+                        <h4>{{job.where}}</h4>
+                        <p>{{job.time}}</p>
+                      </div>
+                    </div>
+
+                    <div class="section">
+                      <h3 class="mat-h3">SKILLS</h3>
+                      <mat-chip-list>
+                          <mat-chip *ngFor="let chip of user.work.skills">{{chip.language}}</mat-chip>
+                      </mat-chip-list>
+                    </div>
+
+                  </mat-expansion-panel>
+
+
+                  <!--Contact Panel-->
+                  <mat-expansion-panel (opened)="panelOpenState = true"
+                                          (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Contact
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        Contact Information
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="section">
+                        <h3 class="mat-h3">E-MAIL</h3>
+                          <p>{{user.email}}</p>
+                    </div>
+                    <div class="section">
+                        <h3 class="mat-h3">PHONE</h3>
+                          <p>{{user.phone}}</p>
+                    </div>
+                    <div class="section">
+                        <h3 class="mat-h3">DIRECTION</h3>
+                          <p>{{user.direction.street}} - {{user.direction.city}} - ({{user.direction.postalcode}})</p>
+                          <p>{{user.direction.country === 'es' ? 'Spain' : 'Other'}}</p>
+                    </div>
+                    <button mat-button>Contact me!</button>
+                  </mat-expansion-panel>
+
+                </mat-accordion>
+                </mat-tab>
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    Photos & Videos
+                  </ng-template>
+                  <h1>Terrible sushi restaurants</h1>
+                  <p>...</p>
+                </mat-tab>
+              </mat-tab-group>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
